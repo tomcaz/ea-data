@@ -13,5 +13,5 @@ app.use('/api/tasks',require('./src/end-points/task.controller.js'))
 // })
 
 
-module.exports.handler = serverless(api);
+module.exports.handler = serverless(app);
 module.exports = app; // for testing
