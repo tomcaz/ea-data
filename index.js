@@ -8,6 +8,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/tasks/',require('./src/end-points/task.controller.js'))
 
+app.use('/.netlify/functions/server', require('./src/end-points/task.controller.js'))
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+
 // app.listen(port, () => {
 //   console.log(`Example app listening on port ${port}`)
 // })
