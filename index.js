@@ -10,3 +10,4 @@ app.use('/api/tasks/',require('./src/end-points/task.controller.js'))
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+module.exports = app; // for testing
