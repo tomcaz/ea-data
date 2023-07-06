@@ -44,3 +44,24 @@ describe('TaskRepo', function () {
     });
   });
 });
+
+
+describe('TaskRepo', function () {
+  describe('#update()', function () {
+    it('should update data', async () =>  {
+      await TestRepo.saveATask({text: 'Test 1', selected: false}) // create new
+      let data = await TestRepo.getTasks()
+      let keys = Object.keys(data);
+      assert.equal(keys.length, 1);
+      assert.equal(data[keys[0]].selected, false);
+      await TestRepo.updateTask(keys[0], {selected : true})
+      data = await TestRepo.getTasks()
+
+      // should change value after save
+      keys = Object.keys(data);
+      assert.equal(data[keys[0]].text === 'Test 1', true);
+      assert.equal(data[keys[0]].selected, true);
+
+    });
+  });
+});

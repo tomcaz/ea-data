@@ -20,5 +20,14 @@ TaskRepo = class {
     deleteAllTasks = async () => {
         this.db.push(`/${this.table}`, {})
     }
+
+    updateTask = async (id, task) => {
+        
+        const dataToSave = { 
+            ... await this.db.getData(`/${this.table}/${id}`),
+            ...task
+        };
+        this.db.push(`/${this.table}/${id}`, dataToSave)
+    }
 }
 module.exports = TaskRepo

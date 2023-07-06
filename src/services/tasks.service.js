@@ -25,9 +25,18 @@ const deleteAllTasks = async (req,res) => {
         res.status(500).send(error)
     }
 }
+const updateTask = async (req,res) => {
+    try {
+        await TaskRepo.updateTask(req.params.id, req.body)
+        res.send('OK');
+    } catch(error) {
+        res.status(500).send(error)
+    }
+}
 
 module.exports = {
     getTaskList,
     saveTask,
-    deleteAllTasks
+    deleteAllTasks,
+    updateTask
 }
