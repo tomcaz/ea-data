@@ -13,8 +13,10 @@ TaskRepo = class {
     }
 
     saveATask = async (task) => {
-        task = {...task, id: v4()}
-        return this.db.push(`/${this.table}/${task.id}`,task)
+        const id = v4();
+        task = {...task, id}
+        await this.db.push(`/${this.table}/${task.id}`,task)
+        return id;
     }
 
     deleteAllTasks = async () => {
