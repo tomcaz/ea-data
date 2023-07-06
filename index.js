@@ -1,12 +1,11 @@
 const express = require('express')
-const cors = require('cor');
-
+const cors = require('cors');
+var bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 app.use(cors());
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(bodyParser.json());
+app.use('/api/tasks/',require('./src/end-points/task.controller.js'))
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
