@@ -1,4 +1,5 @@
 const { JsonDB, Config } = require('node-json-db');
+const { v4 } = require('uuid');
 
 TaskRepo = class {
     
@@ -12,6 +13,7 @@ TaskRepo = class {
     }
 
     saveATask = async (task) => {
+        task = {...task, id: v4()}
         return this.db.push(`/${this.table}/${task.id}`,task)
     }
 

@@ -1,5 +1,4 @@
 const TaskRepo = new (require('./../repo/tasks.repo'))('tasks');
-const { uuid } = require('uuidv4');
 
 const getTaskList = async(req,res) => {
     const rawdata = await TaskRepo.getTasks();
@@ -8,13 +7,11 @@ const getTaskList = async(req,res) => {
 
 const saveTask = async(req,res) => {
     if(req.body) {
-        const task = {
-            ...req.body,
-            id: uuid()
-        }
         try {
+            let task = req.body
             res.send(await TaskRepo.saveATask(task));
         } catch(error) {
+            console.error(error)
             res.status(500).send(error)
         }
     } else res.status(400).send('Task is not present in body')
