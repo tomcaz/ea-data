@@ -12,6 +12,6 @@ app.use('/api/tasks/',require('./src/end-points/task.controller.js'))
 //   console.log(`Example app listening on port ${port}`)
 // })
 
-module.exports = serverless(api);
-
+handler = serverless(api);
+module.exports = handler
 // module.exports = app; // for testing
